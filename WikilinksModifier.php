@@ -29,7 +29,7 @@ class WikilinksModifier extends Modifier
             if ($result = Search::get($query, [$field])) {
 
                 $id = array_get($result->first(), 'id');
-                $url = Content::find($id)->url();
+                $url = $id ? Content::find($id)->url() : null;
 
                 $replacements[] = ($url) ? "<a href='{$url}'>{$query}</a>" : $query;
             }
